@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
 public class Bank {
-    private ArrayList<BankAccount> accounts = new ArrayList<>();
+    private ArrayList<Customer> customers = new ArrayList<>();
 
-    public void addAccount(BankAccount account) {
-        accounts.add(account);
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
     }
 
-    public BankAccount findAccount(String owner) {
-        for (BankAccount acc : accounts) {
-            if (acc.getOwner().equalsIgnoreCase(owner)) {
-                return acc;
+    public Customer findCustomer(String name) {
+        for (Customer c : customers) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                return c;
             }
         }
         return null;

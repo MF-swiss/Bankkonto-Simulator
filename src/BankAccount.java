@@ -1,13 +1,21 @@
 public class BankAccount {
-    private String owner;
+    private Customer owner;
     private double balance;
 
-    public BankAccount(String owner, double initialBalance) {
+    public BankAccount(Customer owner, double initialBalance) {
         if (initialBalance < 0) {
             throw new IllegalArgumentException("Startguthaben darf nicht negativ sein.");
         }
         this.owner = owner;
         this.balance = initialBalance;
+    }
+
+    public Customer getOwner() {
+        return owner;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
     public void deposit(double amount) {
@@ -25,13 +33,5 @@ public class BankAccount {
             throw new IllegalStateException("Nicht genügend Guthaben.");
         }
         balance -= amount;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public String getOwner() {
-        return owner;
     }
 }
