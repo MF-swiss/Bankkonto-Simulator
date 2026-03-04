@@ -15,8 +15,4 @@ public class Bank {
         }
         return null;
     }
-
-    public ArrayList<BankAccount> getAllAccounts() {
-        return accounts;
-    }
 }
