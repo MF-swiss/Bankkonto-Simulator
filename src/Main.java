@@ -46,6 +46,8 @@ public class Main {
             System.out.println("2. Einzahlen");
             System.out.println("3. Abheben");
             System.out.println("4. Beenden");
+            System.out.println("5. Neues Konto erstellen");
+            System.out.println("6. Konto löschen");
             System.out.print("Auswahl: ");
 
             try {
@@ -64,9 +66,30 @@ public class Main {
                         konto.withdraw(sc.nextDouble());
                         break;
                     case 4:
-                        System.out.println("Programm beendet.");
-                        sc.close();
-                        return;
+                        System.out.println("Transaktionshistorie:");
+                        for (Transaction t : konto.getHistory()) {
+                            System.out.println(t.getTimestamp() + " - " + t.getType() + ": " + t.getAmount() + " CHF");
+                        }
+                        break;
+                    case 5:
+                        System.out.print("Startguthaben: ");
+                        double start = sc.nextDouble();
+                        BankAccount neuesKonto = new BankAccount(customer, start);
+                        customer.addAccount(neuesKonto);
+                        System.out.println("Neues Konto wurde erstellt.");
+                        break;
+                    case 6:
+                        System.out.print("Welches Konto soll gelöscht werden? ");
+                        int delIndex = sc.nextInt() - 1;
+
+                        if (delIndex < 0 || delIndex >= customer.getAccounts().size()) {
+                            System.out.println("Ungültige Auswahl.");
+                            break;
+                        }
+
+                        customer.getAccounts().remove(delIndex);
+                        System.out.println("Konto wurde gelöscht.");
+                        break;
                     default:
                         System.out.println("Ungültige Auswahl.");
                 }
