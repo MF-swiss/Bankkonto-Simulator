@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BankAccount {
     private Customer owner;
     private double balance;
@@ -18,11 +20,18 @@ public class BankAccount {
         return balance;
     }
 
+    private ArrayList<Transaction> history = new ArrayList<>();
+
+    public ArrayList<Transaction> getHistory() {
+        return history;
+    }
+
     public void deposit(double amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Betrag muss positiv sein.");
         }
         balance += amount;
+        history.add(new Transaction("Einzahlung", amount));
     }
 
     public void withdraw(double amount) {
@@ -33,5 +42,6 @@ public class BankAccount {
             throw new IllegalStateException("Nicht genügend Guthaben.");
         }
         balance -= amount;
+        history.add(new Transaction("Abhebung", amount));
     }
 }

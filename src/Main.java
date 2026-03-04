@@ -66,9 +66,11 @@ public class Main {
                         konto.withdraw(sc.nextDouble());
                         break;
                     case 4:
-                        System.out.println("Programm beendet.");
-                        sc.close();
-                        return;
+                        System.out.println("Transaktionshistorie:");
+                        for (Transaction t : konto.getHistory()) {
+                            System.out.println(t.getTimestamp() + " - " + t.getType() + ": " + t.getAmount() + " CHF");
+                        }
+                        break;
                     case 5:
                         System.out.print("Startguthaben: ");
                         double start = sc.nextDouble();
